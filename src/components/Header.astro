@@ -1,0 +1,137 @@
+---
+import Link from "./Link.astro";
+import "@fontsource/pacifico";
+
+const navItems = [
+  { href: "/", title: "Home" },
+  { href: "/services", title: "Services" },
+  { href: "/about", title: "About" },
+  { href: "/contact", title: "Contact" },
+];
+---
+
+<header>
+  <div class="header-container">
+    <div class="container">
+      <a class="logo" href="/"> creativewebsolutions </a>
+      <nav>
+        <div class="desktop-menu">
+          {navItems.map((item) => <Link href={item.href} title={item.title} />)}
+          <a class="get-quote" href="/contact"> Get Quote </a>
+        </div>
+
+        <div id="menu-toggle" class="menu">
+          <i id="menu-icon" class="ri-menu-line menu-icon"></i>
+        </div>
+      </nav>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu">
+      {navItems.map((item) => <Link href={item.href} title={item.title} />)}
+      <a class="get-quote" href="/contact"> Get Quote </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+
+    if (menuToggle && mobileMenu && menuIcon) {
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+        menuIcon.classList.toggle("ri-menu-line");
+        menuIcon.classList.toggle("ri-close-line");
+      });
+    }
+  });
+</script>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: white;
+  }
+
+  .header-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100rem;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+  }
+
+  .logo {
+    font-family: "Pacifico", cursive;
+    font-size: 2rem;
+    color: #2563eb;
+    text-decoration: none;
+  }
+
+  .desktop-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .get-quote {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .get-quote:hover {
+    background-color: #1d4ed8;
+  }
+
+  .menu {
+    cursor: pointer;
+    display: none;
+  }
+
+  .menu-icon {
+    font-size: 1.5rem;
+  }
+
+  .menu-icon:hover {
+    color: #2563eb;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu.open {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-menu {
+      display: none;
+    }
+
+    .menu {
+      display: block;
+    }
+
+    .get-quote {
+      border-radius: 0.5rem;
+    }
+  }
+</style>

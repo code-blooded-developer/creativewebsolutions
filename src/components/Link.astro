@@ -1,0 +1,18 @@
+---
+const { href, title } = Astro.props;
+---
+
+<a class="nav-link" href={href}>
+  {title}
+</a>
+
+<style>
+  .nav-link {
+    text-decoration: none;
+    color: #374151;
+    padding: 1rem;
+  }
+  .nav-link:hover {
+    color: #2563eb;
+  }
+</style>
