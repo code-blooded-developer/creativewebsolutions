@@ -1,0 +1,132 @@
+---
+import ServiceCard from "../ServiceCard.astro";
+
+const services = [
+  {
+    icon: "ri-palette-line",
+    title: "Website Design",
+    description:
+      "Beautiful, responsive websites that convert visitors into customers",
+  },
+  {
+    icon: "ri-search-line",
+    title: "SEO Optimization",
+    description: "Get found on Google with our proven SEO strategies",
+  },
+  {
+    icon: "ri-brush-line",
+    title: "Branding",
+    description: "Create a memorable brand identity that stands out",
+  },
+  {
+    icon: "ri-robot-line",
+    title: "Marketing Automation",
+    description: "Streamline your marketing with intelligent automation",
+  },
+];
+---
+
+<section class="services">
+  <div class="container">
+    <div class="services-content">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-description">
+        From concept to launch, we provide comprehensive digital solutions that
+        drive results for your business
+      </p>
+    </div>
+    <div class="services-grid">
+      {
+        services.map((service) => {
+          return (
+            <ServiceCard
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+            />
+          );
+        })
+      }
+    </div>
+    <div class="buttons" style="margin-top: 2rem;">
+      <a href="/services" class="button">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100rem;
+  }
+
+  .services {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: white;
+  }
+
+  .services-content {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+
+  .section-description {
+    font-size: 1.15rem;
+    color: #4b5563;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button {
+    text-decoration: none;
+    color: white;
+    background-color: #2563eb;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    font-size: 1.125rem;
+  }
+
+  .button:hover {
+    background-color: #1d4ed8;
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

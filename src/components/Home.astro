@@ -1,0 +1,140 @@
+---
+import About from "./HomePageSections/About.astro";
+import Testimonials from "./HomePageSections/Testimonials.astro";
+import CTA from "./HomePageSections/CTA.astro";
+import Service from "./HomePageSections/Services.astro";
+---
+
+<div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1 class="title">
+          Creative Digital
+          <span class="subtitle">Solutions</span>
+        </h1>
+        <p class="description">
+          We design stunning websites, boost your SEO rankings, create memorable
+          brands, and automate your marketing for maximum growth
+        </p>
+        <div class="buttons">
+          <a href="/contact" class="button">Start Your Project</a>
+          <a href="/services" class="button secondary">View Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <Service />
+
+  <!-- About Section -->
+  <About />
+
+  <!-- Testimonials Section -->
+  <Testimonials />
+
+  <!-- Call to Action Section -->
+  <CTA />
+</div>
+
+<style>
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url("../assets/background.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100rem;
+  }
+
+  .content {
+    text-align: center;
+    color: white;
+  }
+
+  .title {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .subtitle {
+    display: block;
+    color: #60a5fa;
+  }
+
+  .description {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    color: #e5e7eb;
+    max-width: 48rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button {
+    text-decoration: none;
+    color: white;
+    background-color: #2563eb;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    font-size: 1.125rem;
+  }
+
+  .button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .button.secondary {
+    background-color: transparent;
+    border: 2px solid white;
+  }
+
+  .button.secondary:hover {
+    background-color: white;
+    color: #2563eb;
+  }
+
+  @media (max-width: 768px) {
+    .title {
+      font-size: 3rem;
+    }
+
+    .description {
+      font-size: 1.1rem;
+    }
+
+    .buttons {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .button {
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+</style>
