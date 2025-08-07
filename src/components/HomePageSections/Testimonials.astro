@@ -1,4 +1,6 @@
 ---
+import Container from "../../components/Container.astro";
+
 const testimonials = [
   {
     name: "Sarah Johnson",
@@ -22,7 +24,7 @@ const testimonials = [
 ---
 
 <section class="testimonials-section">
-  <div class="container">
+  <Container>
     <div class="testimonials-content">
       <h2 class="section-title">What Our Clients Say</h2>
       <p class="section-description">
@@ -39,30 +41,20 @@ const testimonials = [
             </div>
             <p class="testimonial-text">"{testimonial.text}"</p>
             <div>
-              <div class="testimonial-author">
-                <strong>{testimonial.name}</strong>
-              </div>
+              <div class="testimonial-author">{testimonial.name}</div>
               <div class="company">{testimonial.company}</div>
             </div>
           </div>
         ))
       }
     </div>
-  </div>
+  </Container>
 </section>
 
 <style>
   .testimonials-section {
     padding: 4rem 0;
     background-color: white;
-  }
-
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100rem;
   }
 
   .testimonials-content {
@@ -77,7 +69,9 @@ const testimonials = [
   }
 
   .section-description {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    opacity: 0.8;
     color: #4b5563;
   }
 
@@ -101,6 +95,7 @@ const testimonials = [
   }
 
   .testimonial-author {
+    font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
@@ -108,10 +103,13 @@ const testimonials = [
     font-style: italic;
     color: #374151;
     margin-bottom: 1.5rem;
+    opacity: 0.8;
+    font-weight: 300;
   }
 
   .company {
     color: #4b5563;
+    opacity: 0.8;
   }
 
   @media (max-width: 768px) {

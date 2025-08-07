@@ -1,9 +1,10 @@
 ---
+import Container from "../../components/Container.astro";
 import aboutSectionImage from "../../assets/about-section.jpg";
 ---
 
 <section class="about">
-  <div class="container">
+  <Container>
     <div class="content">
       <div>
         <h2 class="section-title">Why Choose Us?</h2>
@@ -42,21 +43,13 @@ import aboutSectionImage from "../../assets/about-section.jpg";
         />
       </div>
     </div>
-  </div>
+  </Container>
 </section>
 
 <style>
   .about {
     padding: 4rem 0;
     background-color: #f9fafb;
-  }
-
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100rem;
   }
 
   .content {
@@ -79,8 +72,10 @@ import aboutSectionImage from "../../assets/about-section.jpg";
 
   .section-description {
     font-size: 1.125rem;
+    line-height: 1.75rem;
     color: #4b5563;
     margin-bottom: 2rem;
+    opacity: 0.8;
   }
 
   .button {
@@ -119,6 +114,7 @@ import aboutSectionImage from "../../assets/about-section.jpg";
 
   .label {
     color: #4b5563;
+    opacity: 0.8;
   }
 
   .about-image {

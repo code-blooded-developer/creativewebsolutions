@@ -1,4 +1,5 @@
 ---
+import Container from "../../components/Container.astro";
 import ServiceCard from "../ServiceCard.astro";
 
 const services = [
@@ -27,7 +28,7 @@ const services = [
 ---
 
 <section class="services">
-  <div class="container">
+  <Container>
     <div class="services-content">
       <h2 class="section-title">Our Services</h2>
       <p class="section-description">
@@ -51,18 +52,10 @@ const services = [
     <div class="buttons" style="margin-top: 2rem;">
       <a href="/services" class="button">View All Services</a>
     </div>
-  </div>
+  </Container>
 </section>
 
 <style>
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100rem;
-  }
-
   .services {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -76,16 +69,19 @@ const services = [
 
   .section-title {
     font-size: 3rem;
+    line-height: 1;
     margin-bottom: 1rem;
     color: #111827;
   }
 
   .section-description {
     font-size: 1.15rem;
+    line-height: 1.75rem;
     color: #4b5563;
     max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0.8;
   }
 
   .services-grid {
