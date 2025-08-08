@@ -37,7 +37,12 @@ import Service from "./HomePageSections/Services.astro";
   <Testimonials />
 
   <!-- Call to Action Section -->
-  <CTA />
+  <CTA
+    title="Ready to Grow Your Business?"
+    description="Let's discuss your project and create a digital solution that drives real results. Get a free consultation today!"
+  >
+    <a href="/contact" class="button secondary">Get Free Consultation</a>
+  </CTA>
 </div>
 
 <style>
@@ -59,8 +64,8 @@ import Service from "./HomePageSections/Services.astro";
 
   .title {
     font-size: 4.5rem;
-    margin-bottom: 1.5rem;
     line-height: 1;
+    margin-bottom: 1.5rem;
   }
 
   .subtitle {

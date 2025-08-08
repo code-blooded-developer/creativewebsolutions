@@ -1,0 +1,473 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/Container.astro";
+import CTA from "../../components/HomePageSections/CTA.astro";
+
+import "../../styles/global.css";
+
+const services = [
+  {
+    icon: "ri-palette-line",
+    title: "Website Design & Development",
+    description:
+      "Custom, responsive websites built with the latest technologies",
+    features: [
+      "Responsive Design",
+      "Custom Development",
+      "CMS Integration",
+      "E-commerce Solutions",
+    ],
+    price: "Starting at $2,999",
+  },
+  {
+    icon: "ri-search-line",
+    title: "SEO Optimization",
+    description:
+      "Improve your search engine rankings and drive organic traffic",
+    features: [
+      "Keyword Research",
+      "On-Page SEO",
+      "Technical SEO",
+      "Link Building",
+    ],
+    price: "Starting at $1,499/month",
+  },
+  {
+    icon: "ri-brush-line",
+    title: "Branding & Identity",
+    description:
+      "Create a memorable brand that resonates with your target audience",
+    features: [
+      "Logo Design",
+      "Brand Guidelines",
+      "Marketing Materials",
+      "Brand Strategy",
+    ],
+    price: "Starting at $1,999",
+  },
+  {
+    icon: "ri-robot-line",
+    title: "Marketing Automation",
+    description:
+      "Streamline your marketing processes with intelligent automation",
+    features: [
+      "Email Campaigns",
+      "Lead Nurturing",
+      "Social Media Automation",
+      "Analytics & Reporting",
+    ],
+    price: "Starting at $999/month",
+  },
+  {
+    icon: "ri-smartphone-line",
+    title: "Mobile App Development",
+    description: "Native and cross-platform mobile applications",
+    features: [
+      "iOS Development",
+      "Android Development",
+      "React Native",
+      "App Store Optimization",
+    ],
+    price: "Starting at $4,999",
+  },
+  {
+    icon: "ri-shopping-cart-line",
+    title: "E-commerce Solutions",
+    description: "Complete online store setup and optimization",
+    features: [
+      "Shopify Development",
+      "WooCommerce",
+      "Payment Integration",
+      "Inventory Management",
+    ],
+    price: "Starting at $3,499",
+  },
+];
+
+const process = [
+  {
+    step: "01",
+    title: "Discovery",
+    description: "We learn about your business, goals, and target audience",
+  },
+  {
+    step: "02",
+    title: "Strategy",
+    description: "We develop a comprehensive plan tailored to your needs",
+  },
+  {
+    step: "03",
+    title: "Design",
+    description: "We create stunning designs that align with your brand",
+  },
+  {
+    step: "04",
+    title: "Development",
+    description: "We build your solution using the latest technologies",
+  },
+  {
+    step: "05",
+    title: "Launch",
+    description: "We deploy your project and ensure everything works perfectly",
+  },
+  {
+    step: "06",
+    title: "Support",
+    description: "We provide ongoing maintenance and support",
+  },
+];
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="hero">
+    <Container>
+      <div class="content">
+        <h1 class="title">Our Services</h1>
+        <p class="description">
+          Comprehensive digital solutions to help your business thrive in the
+          digital age
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services">
+    <Container>
+      <div class="service-list">
+        {
+          services.map((service) => (
+            <div class="service-card">
+              <div class="service-header">
+                <div class="service-icon">
+                  <i class={service.icon} />
+                </div>
+                <div class="service-details">
+                  <h3 class="service-title">{service.title}</h3>
+                  <p class="service-description">{service.description}</p>
+                </div>
+              </div>
+              <div class="service-features">
+                <h4 class="service-features-title">What's included:</h4>
+                <ul class="service-features-list">
+                  {service.features.map((feature) => (
+                    <li class="service-features-item">
+                      <i class="ri-check-line" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="service-footer">
+                <div class="service-price">{service.price}</div>
+                <a href="/contact" class="button">
+                  Get Started
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process">
+    <Container>
+      <div class="process-header">
+        <h2 class="section-title">Our Process</h2>
+        <p class="section-description">
+          We follow a proven methodology to ensure every project is delivered on
+          time and exceeds expectations
+        </p>
+      </div>
+      <div class="process-steps">
+        {
+          process.map((step) => (
+            <div class="process-step">
+              <div class="process-step-number">{step.step}</div>
+              <h3 class="process-step-title">{step.title}</h3>
+              <p class="process-step-description">{step.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <CTA
+    title="Ready to Get Started?"
+    description="Let's discuss your project requirements and create a custom solution for your business"
+  >
+    <div class="cta-buttons">
+      <a href="/contact" class="cta-button">Start Your Project</a>
+      <a href="/about" class="cta-button secondary">Learn More About Us</a>
+    </div>
+  </CTA>
+</Layout>
+
+<style>
+  .hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("../../assets/services.jpg");
+    background-size: cover;
+    background-position: center;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .content {
+    text-align: center;
+    color: white;
+  }
+
+  .title {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 300;
+    color: #e5e7eb;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .services {
+    padding: 5rem 0;
+    background-color: white;
+  }
+
+  .service-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+  }
+
+  .service-card {
+    padding: 2rem;
+    background: #f9fafb;
+    border-radius: 0.75rem;
+  }
+
+  .service-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .service-icon {
+    font-size: 1.5rem;
+    color: #2563eb;
+    background: #dbeafe;
+    margin-bottom: 1.5rem;
+    border-radius: 9999px;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-title {
+    color: #111827;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .service-description {
+    color: #4b5563;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .service-details {
+    flex: 1;
+    margin-left: 1rem;
+  }
+
+  .service-features {
+    margin-bottom: 1.5rem;
+  }
+
+  .service-features-title {
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.75rem;
+    opacity: 0.8;
+  }
+
+  .service-features-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .service-features-item {
+    display: flex;
+    align-items: center;
+    color: #4b5563;
+    gap: 0.5rem;
+
+    > i {
+      color: #2563eb;
+    }
+  }
+
+  .service-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+
+  .service-price {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #2563eb;
+  }
+
+  .button {
+    text-decoration: none;
+    color: white;
+    background-color: #2563eb;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    font-size: 1.125rem;
+  }
+
+  .process {
+    padding: 5rem 0;
+    background-color: #f9fafb;
+  }
+
+  .process-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #111827;
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .process-step {
+    text-align: center;
+  }
+
+  .process-step-number {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    background: #2563eb;
+    color: white;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 9999px;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .process-step-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .process-step-description {
+    color: #4b5563;
+    opacity: 0.8;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .cta-button {
+    text-decoration: none;
+    color: #2563eb;
+    background-color: white;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .cta-button:hover {
+    background-color: #f3f4f6;
+    color: #2563eb;
+  }
+
+  .cta-button.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .cta-button.secondary:hover {
+    background-color: white;
+    color: #2563eb;
+  }
+
+  @media (max-width: 768px) {
+    .service-list {
+      grid-template-columns: 1fr;
+    }
+
+    .process-steps {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>

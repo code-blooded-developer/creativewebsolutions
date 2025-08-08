@@ -1,15 +1,16 @@
 ---
 import Container from "../../components/Container.astro";
+
+const { title, description } = Astro.props;
 ---
 
 <section class="cta-section">
   <Container>
-    <h2 class="section-title">Ready to Grow Your Business?</h2>
+    <h2 class="section-title">{title}</h2>
     <p class="section-description">
-      Let's discuss your project and create a digital solution that drives real
-      results. Get a free consultation today!
+      {description}
     </p>
-    <a href="/contact" class="button">Get Free Consultation</a>
+    <slot />
   </Container>
 </section>
 
@@ -34,23 +35,5 @@ import Container from "../../components/Container.astro";
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
-  }
-
-  .button {
-    text-decoration: none;
-    color: #2563eb;
-    background-color: white;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 9999px;
-    white-space: nowrap;
-    font-size: 1.125rem;
-  }
-
-  .button:hover {
-    background-color: #f3f4f6;
-    color: #2563eb;
   }
 </style>
