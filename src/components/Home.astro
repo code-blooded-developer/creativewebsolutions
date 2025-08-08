@@ -1,9 +1,12 @@
 ---
 import Container from "../components/Container.astro";
-import About from "./HomePageSections/About.astro";
+import Stats from "../components/common/Stats.astro";
 import Testimonials from "./HomePageSections/Testimonials.astro";
-import CTA from "./HomePageSections/CTA.astro";
+import CTA from "./common/CTA.astro";
 import Service from "./HomePageSections/Services.astro";
+import Button from "./common/Button.astro";
+
+import aboutSectionImage from "../assets/home/about.jpg";
 ---
 
 <div>
@@ -20,8 +23,10 @@ import Service from "./HomePageSections/Services.astro";
           brands, and automate your marketing for maximum growth
         </p>
         <div class="buttons">
-          <a href="/contact" class="button">Start Your Project</a>
-          <a href="/services" class="button secondary">View Our Services</a>
+          <Button href="/contact">Start Your Project</Button>
+          <Button href="/services" class="secondary">
+            View Our Services
+          </Button>
         </div>
       </div>
     </Container>
@@ -31,7 +36,19 @@ import Service from "./HomePageSections/Services.astro";
   <Service />
 
   <!-- About Section -->
-  <About />
+  <Stats
+    title="Why Choose Us?"
+    description="With over 8 years of experience in digital marketing and web development, we've helped hundreds of businesses achieve their online goals. Our team combines creativity with technical expertise to deliver exceptional results."
+    stats={[
+      { label: "Projects Completed", value: "500+" },
+      { label: "Client Satisfaction", value: "98%" },
+      { label: "Years of Experience", value: "8+" },
+      { label: "Support", value: "24/7" },
+    ]}
+    sectionImg={aboutSectionImage.src}
+  >
+    <Button href="/about"> Learn More About Us </Button>
+  </Stats>
 
   <!-- Testimonials Section -->
   <Testimonials />
@@ -41,14 +58,14 @@ import Service from "./HomePageSections/Services.astro";
     title="Ready to Grow Your Business?"
     description="Let's discuss your project and create a digital solution that drives real results. Get a free consultation today!"
   >
-    <a href="/contact" class="button secondary">Get Free Consultation</a>
+    <Button href="/contact" class="secondary">Get Free Consultation</Button>
   </CTA>
 </div>
 
 <style>
   .hero {
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-      url("../assets/background.jpg");
+      url("../assets/home/hero.jpg");
     background-size: cover;
     background-position: center;
     min-height: 100vh;
@@ -91,33 +108,6 @@ import Service from "./HomePageSections/Services.astro";
     align-items: center;
   }
 
-  .button {
-    text-decoration: none;
-    color: white;
-    background-color: #2563eb;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 9999px;
-    white-space: nowrap;
-    font-size: 1.125rem;
-  }
-
-  .button:hover {
-    background-color: #1d4ed8;
-  }
-
-  .button.secondary {
-    background-color: transparent;
-    border: 2px solid white;
-  }
-
-  .button.secondary:hover {
-    background-color: white;
-    color: #2563eb;
-  }
-
   @media (max-width: 768px) {
     .title {
       font-size: 3rem;
@@ -130,11 +120,6 @@ import Service from "./HomePageSections/Services.astro";
     .buttons {
       flex-direction: column;
       gap: 0.5rem;
-    }
-
-    .button {
-      box-sizing: border-box;
-      width: 100%;
     }
   }
 </style>

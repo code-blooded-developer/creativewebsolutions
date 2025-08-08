@@ -1,6 +1,8 @@
 ---
 import Container from "../../components/Container.astro";
 import ServiceCard from "../ServiceCard.astro";
+import SectionHeader from "../common/SectionHeader.astro";
+import Button from "../common/Button.astro";
 
 const services = [
   {
@@ -29,13 +31,10 @@ const services = [
 
 <section class="services">
   <Container>
-    <div class="services-content">
-      <h2 class="section-title">Our Services</h2>
-      <p class="section-description">
-        From concept to launch, we provide comprehensive digital solutions that
-        drive results for your business
-      </p>
-    </div>
+    <SectionHeader
+      title="Our Services"
+      description="From concept to launch, we provide comprehensive digital solutions that drive results for your business"
+    />
     <div class="services-grid">
       {
         services.map((service) => {
@@ -50,7 +49,7 @@ const services = [
       }
     </div>
     <div class="buttons" style="margin-top: 2rem;">
-      <a href="/services" class="button">View All Services</a>
+      <Button href="/services">View All Services</Button>
     </div>
   </Container>
 </section>
@@ -60,28 +59,6 @@ const services = [
     padding-top: 5rem;
     padding-bottom: 5rem;
     background-color: white;
-  }
-
-  .services-content {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-size: 3rem;
-    line-height: 1;
-    margin-bottom: 1rem;
-    color: #111827;
-  }
-
-  .section-description {
-    font-size: 1.15rem;
-    line-height: 1.75rem;
-    color: #4b5563;
-    max-width: 48rem;
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 0.8;
   }
 
   .services-grid {
@@ -95,23 +72,6 @@ const services = [
     gap: 1rem;
     justify-content: center;
     align-items: center;
-  }
-
-  .button {
-    text-decoration: none;
-    color: white;
-    background-color: #2563eb;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 9999px;
-    white-space: nowrap;
-    font-size: 1.125rem;
-  }
-
-  .button:hover {
-    background-color: #1d4ed8;
   }
 
   @media (max-width: 768px) {

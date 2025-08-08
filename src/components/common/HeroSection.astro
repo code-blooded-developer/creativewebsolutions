@@ -1,0 +1,47 @@
+---
+import Container from "../Container.astro";
+
+const { title, description, backgroundImage } = Astro.props;
+---
+
+<section
+  class="hero"
+  style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${backgroundImage})`}
+>
+  <Container>
+    <div class="content">
+      <h1 class="title">{title}</h1>
+      <p class="description">{description}</p>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .hero {
+    background-size: cover;
+    background-position: center;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .content {
+    text-align: center;
+    color: white;
+  }
+
+  .title {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 300;
+    color: #e5e7eb;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

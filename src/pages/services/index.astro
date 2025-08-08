@@ -1,7 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/Container.astro";
-import CTA from "../../components/HomePageSections/CTA.astro";
+import CTA from "../../components/common/CTA.astro";
+import HeroSection from "../../components/common/HeroSection.astro";
+import SectionHeader from "../../components/common/SectionHeader.astro";
+import Button from "../../components/common/Button.astro";
+
+import servicesImage from "../../assets/services/hero.jpg";
 
 import "../../styles/global.css";
 
@@ -120,17 +125,11 @@ const process = [
 
 <Layout>
   <!-- Hero Section -->
-  <section class="hero">
-    <Container>
-      <div class="content">
-        <h1 class="title">Our Services</h1>
-        <p class="description">
-          Comprehensive digital solutions to help your business thrive in the
-          digital age
-        </p>
-      </div>
-    </Container>
-  </section>
+  <HeroSection
+    title="Our Services"
+    description="Comprehensive digital solutions to help your business thrive in the digital age"
+    backgroundImage={servicesImage.src}
+  />
 
   <!-- Services Section -->
   <section class="services">
@@ -161,9 +160,7 @@ const process = [
               </div>
               <div class="service-footer">
                 <div class="service-price">{service.price}</div>
-                <a href="/contact" class="button">
-                  Get Started
-                </a>
+                <Button href="/contact">Get Started</Button>
               </div>
             </div>
           ))
@@ -175,13 +172,10 @@ const process = [
   <!-- Process Section -->
   <section class="process">
     <Container>
-      <div class="process-header">
-        <h2 class="section-title">Our Process</h2>
-        <p class="section-description">
-          We follow a proven methodology to ensure every project is delivered on
-          time and exceeds expectations
-        </p>
-      </div>
+      <SectionHeader
+        title="Our Process"
+        description="We follow a proven methodology to ensure every project is delivered on time and exceeds expectations"
+      />
       <div class="process-steps">
         {
           process.map((step) => (
@@ -201,43 +195,13 @@ const process = [
     description="Let's discuss your project requirements and create a custom solution for your business"
   >
     <div class="cta-buttons">
-      <a href="/contact" class="cta-button">Start Your Project</a>
-      <a href="/about" class="cta-button secondary">Learn More About Us</a>
+      <Button href="/contact" class="tertiary">Start Your Project</Button>
+      <Button href="/about" class="secondary">Learn More About Us</Button>
     </div>
   </CTA>
 </Layout>
 
 <style>
-  .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url("../../assets/services.jpg");
-    background-size: cover;
-    background-position: center;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-
-  .content {
-    text-align: center;
-    color: white;
-  }
-
-  .title {
-    font-size: 4.5rem;
-    line-height: 1;
-    margin-bottom: 1.5rem;
-  }
-
-  .description {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 300;
-    color: #e5e7eb;
-    max-width: 48rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .services {
     padding: 5rem 0;
     background-color: white;
@@ -343,41 +307,9 @@ const process = [
     color: #2563eb;
   }
 
-  .button {
-    text-decoration: none;
-    color: white;
-    background-color: #2563eb;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 9999px;
-    white-space: nowrap;
-    font-size: 1.125rem;
-  }
-
   .process {
     padding: 5rem 0;
     background-color: #f9fafb;
-  }
-
-  .process-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    color: #111827;
-  }
-
-  .section-description {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    color: #4b5563;
-    margin-bottom: 2rem;
-    opacity: 0.8;
   }
 
   .process-steps {
@@ -424,36 +356,6 @@ const process = [
     display: flex;
     justify-content: center;
     gap: 1rem;
-  }
-
-  .cta-button {
-    text-decoration: none;
-    color: #2563eb;
-    background-color: white;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 9999px;
-    white-space: nowrap;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
-
-  .cta-button:hover {
-    background-color: #f3f4f6;
-    color: #2563eb;
-  }
-
-  .cta-button.secondary {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .cta-button.secondary:hover {
-    background-color: white;
-    color: #2563eb;
   }
 
   @media (max-width: 768px) {

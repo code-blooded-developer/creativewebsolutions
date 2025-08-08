@@ -1,42 +1,30 @@
 ---
 import Container from "../../components/Container.astro";
-import aboutSectionImage from "../../assets/about-section.jpg";
+import SectionHeader from "../common/SectionHeader.astro";
+
+const { title, description, stats, sectionImg } = Astro.props;
 ---
 
 <section class="about">
   <Container>
     <div class="content">
       <div>
-        <h2 class="section-title">Why Choose Us?</h2>
-        <p class="section-description">
-          With over 8 years of experience in digital marketing and web
-          development, we've helped hundreds of businesses achieve their online
-          goals. Our team combines creativity with technical expertise to
-          deliver exceptional results.
-        </p>
+        <SectionHeader title={title} description={description} alignLeft />
         <div class="stats">
-          <div class="stat">
-            <div class="number">500+</div>
-            <div class="label">Projects Completed</div>
-          </div>
-          <div class="stat">
-            <div class="number">98%</div>
-            <div class="label">Client Satisfaction</div>
-          </div>
-          <div class="stat">
-            <div class="number">8+</div>
-            <div class="label">Years of Experience</div>
-          </div>
-          <div class="stat">
-            <div class="number">24/7</div>
-            <div class="label">Support</div>
-          </div>
+          {
+            stats.map((stat: { value: string; label: string }) => (
+              <div class="stat">
+                <div class="number">{stat.value}</div>
+                <div class="label">{stat.label}</div>
+              </div>
+            ))
+          }
         </div>
-        <a href="/about" class="button">Learn More About Us</a>
+        <slot />
       </div>
       <div>
         <img
-          src={aboutSectionImage.src}
+          src={sectionImg}
           alt="Our Team"
           class="about-image"
           loading="lazy"
@@ -57,25 +45,6 @@ import aboutSectionImage from "../../assets/about-section.jpg";
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
     align-items: center;
-  }
-
-  .services-content {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-    color: #111827;
-  }
-
-  .section-description {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    color: #4b5563;
-    margin-bottom: 2rem;
-    opacity: 0.8;
   }
 
   .button {
