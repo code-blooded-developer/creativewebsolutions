@@ -2,16 +2,16 @@
 const { icon, title, description } = Astro.props;
 ---
 
-<div class="service">
-  <div class="service-icon">
+<div class="card">
+  <div class="card-icon">
     <i class={icon}></i>
   </div>
-  <h3 class="service-title">{title}</h3>
-  <p class="service-description">{description}</p>
+  <h3 class="card-title">{title}</h3>
+  <p class="card-description">{description}</p>
 </div>
 
 <style>
-  .service {
+  .card {
     padding: 2rem;
     background: #f9fafb;
     border-radius: 0.75rem;
@@ -20,11 +20,11 @@ const { icon, title, description } = Astro.props;
     align-items: center;
   }
 
-  .service:hover {
+  .card:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .service-icon {
+  .card-icon {
     font-size: 1.5rem;
     color: #2563eb;
     background: #dbeafe;
@@ -37,7 +37,7 @@ const { icon, title, description } = Astro.props;
     justify-content: center;
   }
 
-  .service-title {
+  .card-title {
     color: #111827;
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -46,7 +46,7 @@ const { icon, title, description } = Astro.props;
     opacity: 0.8;
   }
 
-  .service-description {
+  .card-description {
     color: #4b5563;
     line-height: 1.5rem;
     opacity: 0.8;

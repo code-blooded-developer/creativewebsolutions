@@ -3,10 +3,35 @@ import Container from "../components/Container.astro";
 import Stats from "../components/common/Stats.astro";
 import Testimonials from "./HomePageSections/Testimonials.astro";
 import CTA from "./common/CTA.astro";
-import Service from "./HomePageSections/Services.astro";
+import CardSection from "./common/CardSection.astro";
 import Button from "./common/Button.astro";
+import Card from "./common/Card.astro";
 
 import aboutSectionImage from "../assets/home/about.jpg";
+
+const services = [
+  {
+    icon: "ri-palette-line",
+    title: "Website Design",
+    description:
+      "Beautiful, responsive websites that convert visitors into customers",
+  },
+  {
+    icon: "ri-search-line",
+    title: "SEO Optimization",
+    description: "Get found on Google with our proven SEO strategies",
+  },
+  {
+    icon: "ri-brush-line",
+    title: "Branding",
+    description: "Create a memorable brand identity that stands out",
+  },
+  {
+    icon: "ri-robot-line",
+    title: "Marketing Automation",
+    description: "Streamline your marketing with intelligent automation",
+  },
+];
 ---
 
 <div>
@@ -33,7 +58,30 @@ import aboutSectionImage from "../assets/home/about.jpg";
   </section>
 
   <!-- Services Section -->
-  <Service />
+  <CardSection
+    title="Our Services"
+    description="From concept to launch, we provide comprehensive digital solutions that drive results for your business"
+    data={services}
+  >
+    <Fragment slot="cards">
+      {
+        services.map(
+          (service: { icon: string; title: string; description: string }) => {
+            return (
+              <Card
+                icon={service.icon}
+                title={service.title}
+                description={service.description}
+              />
+            );
+          }
+        )
+      }
+    </Fragment>
+    <div slot="actions" class="buttons" style="margin-top: 2rem;">
+      <Button href="/services">View All Services</Button>
+    </div>
+  </CardSection>
 
   <!-- About Section -->
   <Stats
@@ -46,6 +94,7 @@ import aboutSectionImage from "../assets/home/about.jpg";
       { label: "Support", value: "24/7" },
     ]}
     sectionImg={aboutSectionImage.src}
+    hasGreyBg
   >
     <Button href="/about"> Learn More About Us </Button>
   </Stats>

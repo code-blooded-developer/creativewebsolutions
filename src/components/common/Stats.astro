@@ -2,10 +2,10 @@
 import Container from "../../components/Container.astro";
 import SectionHeader from "../common/SectionHeader.astro";
 
-const { title, description, stats, sectionImg } = Astro.props;
+const { title, description, stats, sectionImg, hasGreyBg } = Astro.props;
 ---
 
-<section class="about">
+<section class="about" style={hasGreyBg ? "background-color: #f9fafb;" : ""}>
   <Container>
     <div class="content">
       <div>
@@ -37,7 +37,7 @@ const { title, description, stats, sectionImg } = Astro.props;
 <style>
   .about {
     padding: 4rem 0;
-    background-color: #f9fafb;
+    background-color: white;
   }
 
   .content {
@@ -79,6 +79,7 @@ const { title, description, stats, sectionImg } = Astro.props;
     font-size: 1.875rem;
     color: #2563eb;
     margin-bottom: 0.5rem;
+    font-weight: 700;
   }
 
   .label {

@@ -1,0 +1,56 @@
+---
+const { name, role, bio, image } = Astro.props;
+---
+
+<div class="card">
+  <img src={image} alt={name} class="card-image" loading="lazy" />
+  <h3 class="card-title">{name}</h3>
+  <div class="card-role">{role}</div>
+  <p class="card-description">{bio}</p>
+</div>
+
+<style>
+  .card {
+    padding: 2rem;
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-image {
+    object-fit: cover;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card-title {
+    color: #111827;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+  }
+
+  .card-role {
+    color: #2563eb;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+
+  .card-description {
+    color: #4b5563;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    opacity: 0.8;
+  }
+</style>

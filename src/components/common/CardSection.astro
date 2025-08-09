@@ -1,0 +1,48 @@
+---
+import Container from "../../components/Container.astro";
+import SectionHeader from "../common/SectionHeader.astro";
+
+const { title, description, hasGreyBg } = Astro.props;
+---
+
+<section
+  class="card-section"
+  style={hasGreyBg ? "background-color: #f9fafb;" : ""}
+>
+  <Container>
+    <SectionHeader title={title} description={description} />
+    <div class="card-grid">
+      <slot name="cards" />
+    </div>
+    <slot name="actions" />
+  </Container>
+</section>
+
+<style>
+  .card-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: white;
+    &.has-grey-bg {
+      background-color: #f9fafb;
+    }
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .card-grid {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,168 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroSection from "../../components/common/HeroSection.astro";
+import Stats from "../../components/common/Stats.astro";
+import CardSection from "../../components/common/CardSection.astro";
+import Card from "../../components/common/Card.astro";
+import TeamCard from "../../components/common/TeamCard.astro";
+import CTA from "../../components/common/CTA.astro";
+import Button from "../../components/common/Button.astro";
+
+import aboutImage from "../../assets/about/hero.jpg";
+import storyImage from "../../assets/about/story.jpg";
+import alexImage from "../../assets/about/alex.jpg";
+import sarahImage from "../../assets/about/sarah.jpg";
+import davidImage from "../../assets/about/david.jpg";
+import emmaImage from "../../assets/about/emma.jpg";
+
+import "../../styles/global.css";
+
+const values = [
+  {
+    icon: "ri-lightbulb-line",
+    title: "Innovation",
+    description:
+      "We stay ahead of the curve with cutting-edge technologies and creative solutions",
+  },
+  {
+    icon: "ri-shield-check-line",
+    title: "Quality",
+    description:
+      "Every project undergoes rigorous testing to ensure the highest quality standards",
+  },
+  {
+    icon: "ri-team-line",
+    title: "Collaboration",
+    description:
+      "We work closely with our clients as partners to achieve shared success",
+  },
+  {
+    icon: "ri-time-line",
+    title: "Reliability",
+    description:
+      "We deliver on our promises, on time, and within budget, every time",
+  },
+];
+
+const team = [
+  {
+    name: "Alex Rodriguez",
+    role: "CEO & Founder",
+    bio: "With over 12 years in digital marketing, Alex founded Creative Web Solutions to help businesses succeed online.",
+    image: alexImage.src,
+  },
+  {
+    name: "Sarah Mitchell",
+    role: "Creative Director",
+    bio: "Sarah brings 8+ years of design expertise, creating stunning visual experiences that convert visitors into customers.",
+    image: sarahImage.src,
+  },
+  {
+    name: "David Chen",
+    role: "Lead Developer",
+    bio: "David is our technical guru with expertise in modern web technologies and scalable application development.",
+    image: davidImage.src,
+  },
+  {
+    name: "Emma Johnson",
+    role: "SEO Specialist",
+    bio: "Emma helps our clients dominate search results with proven SEO strategies and data-driven optimization.",
+    image: emmaImage.src,
+  },
+];
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <HeroSection
+    title="About Us"
+    description="We're a passionate team of digital experts dedicated to helping businesses thrive online"
+    backgroundImage={aboutImage.src}
+  />
+
+  <!-- Our Story Section -->
+  <Stats
+    title="Our Story"
+    description="Founded in 2016, Creative Web Solutions started as a small web design studio with a big vision: to help businesses succeed in the digital world through exceptional design and innovative solutions. Over the years, we've evolved into a full-service digital agency, expanding our expertise to include SEO, branding, marketing automation, and more. What hasn't changed is our commitment to delivering results that exceed our clients' expectations. Today, we're proud to have helped over 500 businesses transform their digital presence and achieve measurable growth through our comprehensive digital solutions."
+    stats={[
+      { label: "Projects Completed", value: "500+" },
+      { label: "Years of Experience", value: "8+" },
+    ]}
+    sectionImg={storyImage.src}
+  />
+
+  <CardSection
+    title="Our Values"
+    description="These core principles guide everything we do and define who we are as a company"
+    hasGreyBg
+  >
+    <Fragment slot="cards">
+      {
+        values.map(
+          (value: { icon: string; title: string; description: string }) => {
+            return (
+              <Card
+                icon={value.icon}
+                title={value.title}
+                description={value.description}
+              />
+            );
+          }
+        )
+      }
+    </Fragment>
+  </CardSection>
+
+  <!-- Meet Our Team Section -->
+  <CardSection
+    title="Meet Our Team"
+    description="The talented individuals behind our success, each bringing unique expertise and passion to every project"
+  >
+    <Fragment slot="cards">
+      {
+        team.map(
+          (member: {
+            name: string;
+            role: string;
+            bio: string;
+            image: string;
+          }) => {
+            return (
+              <TeamCard
+                name={member.name}
+                role={member.role}
+                bio={member.bio}
+                image={member.image}
+              />
+            );
+          }
+        )
+      }
+    </Fragment>
+  </CardSection>
+
+  <CTA
+    title="Want to Work With Us?"
+    description="We'd love to hear about your project and discuss how we can help you achieve your digital goals"
+  >
+    <div class="cta-buttons">
+      <Button href="/contact" class="tertiary">Get In Touch</Button>
+      <Button href="/services" class="secondary">View Our Services</Button>
+    </div>
+  </CTA>
+</Layout>
+
+<style>
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .cta-buttons {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+</style>
