@@ -1,0 +1,157 @@
+<div>
+  <h2 class="contact-form-title">Start Your Project</h2>
+  <p class="contact-form-description">
+    Fill out the form below and we'll get back to you within 24 hours with a
+    detailed proposal.
+  </p>
+  <form class="contact-form">
+    <div class="form-group">
+      <div class="form-field">
+        <label class="form-label" for="name">Full Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your full name"
+          required
+          class="form-input"
+        />
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          class="form-input"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-field">
+        <label class="form-label" for="phone">Phone Number</label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="+1 (555) 123-4567"
+          class="form-input"
+        />
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="company">Company Name</label>
+        <input
+          type="text"
+          id="company"
+          name="company"
+          placeholder="Your company"
+          class="form-input"
+        />
+      </div>
+    </div>
+    <div>
+      <div class="form-field">
+        <label class="form-label" for="message">Project Details</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="6"
+          placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
+          class="form-input"
+          maxlength="500"
+          required
+          style="resize: none;"></textarea>
+      </div>
+    </div>
+    <button type="submit" class="submit-button"> Send Message </button>
+  </form>
+</div>
+
+<style>
+  .contact-form-title {
+    color: #111827;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .contact-form-description {
+    color: #4b5563;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    color: #374151;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .form-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 100%;
+  }
+
+  .form-input::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+
+  .submit-button {
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .submit-button:hover {
+    background-color: #1d4ed8;
+  }
+
+  .submit-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .form-group {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

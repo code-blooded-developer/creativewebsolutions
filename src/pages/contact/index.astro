@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroSection from "../../components/common/HeroSection.astro";
+import Container from "../../components/Container.astro";
+import ContactForm from "../../components/common/ContactForm.astro";
+import ContactInfo from "../../components/common/ContactInfo.astro";
+
+import heroImage from "../../assets/contact/hero.jpg";
+
+import "../../styles/global.css";
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <HeroSection
+    title="Get In Touch"
+    description="Ready to start your next project? Let's discuss how we can help you achieve your digital goals"
+    backgroundImage={heroImage.src}
+  />
+
+  <section>
+    <Container>
+      <div class="container">
+        <ContactForm />
+        <ContactInfo />
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<style>
+  section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: white;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4rem;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+      padding: 0 1rem;
+    }
+  }
+</style>
