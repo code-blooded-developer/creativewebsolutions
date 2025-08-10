@@ -7,11 +7,11 @@ const { frontmatter } = Astro.props;
 
 import "../styles/global.css";
 
-const { title, date, timeToRead, author, authorRole, cover } = frontmatter;
+const { id, title, date, readTime, author, category } = frontmatter;
 
 let coverImg;
-if (frontmatter.cover) {
-  coverImg = await import(frontmatter.cover);
+if (id) {
+  coverImg = await import(`../assets/blog-posts/${id}.jpg`);
 }
 ---
 
@@ -36,10 +36,10 @@ if (frontmatter.cover) {
         <a href="/blog" class="back-to-blog-link">← Back to Blog</a>
         <header class="post-header">
           <div class="post-meta">
-            <span class="post-category">Web Design</span>
+            <span class="post-category">{category}</span>
             <span class="post-date">{date}</span>
             <span class="post-separator">•</span>
-            <span class="post-read-time">{timeToRead}</span>
+            <span class="post-read-time">{readTime}</span>
           </div>
           <h1 class="post-title">{title}</h1>
           <div class="post-author">
@@ -48,7 +48,7 @@ if (frontmatter.cover) {
             </div>
             <div>
               <div class="post-author-name">{author}</div>
-              <div class="post-author-role">{authorRole}</div>
+              <div class="post-author-role">Digital Marketing Expert</div>
             </div>
           </div>
         </header>
@@ -114,6 +114,7 @@ if (frontmatter.cover) {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
   }
 
   .post-category {
@@ -285,5 +286,16 @@ if (frontmatter.cover) {
 
   .post-share-icon.linkedin:hover {
     background: #1e40af;
+  }
+
+  @media (max-width: 640px) {
+    .post-image {
+      height: 16rem;
+    }
+
+    .post-title {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
   }
 </style>

@@ -105,7 +105,7 @@ const { title, description, stats, sectionImg, hasGreyBg } = Astro.props;
     }
 
     .content {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 
     .about-image {

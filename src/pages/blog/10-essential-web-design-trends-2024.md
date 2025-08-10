@@ -1,12 +1,13 @@
 ---
 layout: ../../layouts/BlogPostLayout.astro
+id: "10-essential-web-design-trends-2024"
 title: "10 Essential Web Design Trends for 2024"
-date: March 15, 2024
-timeToRead: 8 min read
-author: Sarah Mitchell
-authorRole: Digital Marketing Expert
-cover: ../assets/blog-posts/post-1.jpg
-tags: ["astro", "blogging", "learning in public"]
+excerpt: "Discover the latest web design trends that will dominate 2024 and learn how to implement them in your projects for maximum impact."
+author: "Sarah Mitchell"
+date: "March 15, 2024"
+category: "Web Design"
+readTime: "8 min read"
+isFeatured: true
 ---
 
 The digital landscape is constantly evolving, and 2024 brings exciting new trends that will shape how we design and experience websites. As we move further into the digital age, staying current with design trends isn't just about aesthetics—it's about creating user experiences that resonate with modern audiences and drive business results.

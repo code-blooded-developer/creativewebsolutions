@@ -1,0 +1,518 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroSection from "../../components/common/HeroSection.astro";
+import Container from "../../components/Container.astro";
+import { Image } from "astro:assets";
+
+import heroImage from "../../assets/blog/hero.jpg";
+
+import "../../styles/global.css";
+
+const allPosts = Object.values(
+  import.meta.glob("../blog/*.md", { eager: true })
+);
+
+let categories = new Set();
+
+const blogPosts = await Promise.all(
+  allPosts.map(async (post: any) => {
+    const { frontmatter } = post;
+    let coverImg;
+
+    if (frontmatter.id) {
+      const imageModule = await import(
+        `../../assets/blog-posts/${frontmatter.id}.jpg`
+      );
+      coverImg = imageModule.default;
+    }
+
+    categories.add(frontmatter.category);
+
+    return {
+      ...frontmatter,
+      coverImg,
+    };
+  })
+);
+
+const featuredPost = blogPosts.find((post: any) => post.isFeatured === true);
+---
+
+<Layout pageTitle="Blog">
+  <!-- Hero Section -->
+  <HeroSection
+    title="Our Blog"
+    description="Insights, tips, and strategies to help you succeed in the digital world"
+    backgroundImage={heroImage.src}
+  />
+
+  <section class="blog-posts-section">
+    <Container>
+      <div class="post-filters">
+        <button class="post-filter active" data-category="all">All</button>
+        {
+          Array.from(categories).map((category) => (
+            <button class="post-filter" data-category={category}>
+              {category}
+            </button>
+          ))
+        }
+      </div>
+      <div class="featured-post-container">
+        <div class="featured-post">
+          <div class="featured-post-image-container">
+            {
+              featuredPost.coverImg && (
+                <Image
+                  class="featured-post-image"
+                  src={featuredPost.coverImg}
+                  alt={featuredPost.title}
+                />
+              )
+            }
+            <div class="featured-post-label">
+              <span class="featured-post-label-text">Featured</span>
+            </div>
+          </div>
+          <div class="featured-post-content">
+            <div class="featured-post-meta">
+              <span class="featured-post-meta-category"
+                >{featuredPost.category}</span
+              >
+              <span>{featuredPost.date}</span>
+              <span>•</span>
+              <span>{featuredPost.readTime}</span>
+            </div>
+            <h2 class="featured-post-title">
+              <a
+                href={`/blog/${featuredPost.id}`}
+                class="featured-post-title-link"
+              >
+                {featuredPost.title}
+              </a>
+            </h2>
+            <p class="featured-post-excerpt">
+              {featuredPost.excerpt}
+            </p>
+            <div class="featured-post-author-container">
+              <div class="featured-post-author">
+                <div class="featured-post-author-image">
+                  <i class="ri-user-line"></i>
+                </div>
+                <span class="featured-post-author-name"
+                  >{featuredPost.author}</span
+                >
+              </div>
+              <a
+                href={`/blog/${featuredPost.id}`}
+                class="featured-post-author-link"
+              >
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-posts">
+        {
+          blogPosts
+            .filter((post: any) => post.isFeatured !== true)
+            .map((post: any) => {
+              const {
+                id,
+                coverImg,
+                title,
+                date,
+                readTime,
+                author,
+                category,
+                excerpt,
+              } = post;
+              return (
+                <article class="blog-post" data-category={category}>
+                  <div class="blog-post-image-container">
+                    {coverImg && (
+                      <Image
+                        class="blog-post-image"
+                        src={coverImg}
+                        alt={title}
+                      />
+                    )}
+                    <div class="blog-post-category">
+                      <span class="blog-post-category-text">{category}</span>
+                    </div>
+                  </div>
+                  <div class="blog-post-meta">
+                    <div class="blog-post-meta-details">
+                      <span>{date}</span>
+                      <span>•</span>
+                      <span>{readTime}</span>
+                    </div>
+                    <h3 class="blog-post-title">
+                      <a href={`/blog/${id}`} class="blog-post-title-link">
+                        {title}
+                      </a>
+                    </h3>
+                    <p class="blog-post-excerpt">{excerpt}</p>
+                    <div class="blog-post-author-container">
+                      <div class="blog-post-author">
+                        <div class="blog-post-author-image">
+                          <i class="ri-user-line" />
+                        </div>
+                        <span class="blog-post-author-name">{author}</span>
+                      </div>
+                      <a href={`/blog/${id}`} class="blog-post-author-link">
+                        Read More →
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              );
+            })
+        }
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = document.querySelectorAll(".post-filter");
+    const posts = document.querySelectorAll(".blog-post");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Update active button
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        const selectedCategory = button.dataset.category;
+
+        posts.forEach((post) => {
+          if (
+            selectedCategory === "all" ||
+            post.dataset.category === selectedCategory
+          ) {
+            post.style.display = "";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .blog-posts-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: white;
+  }
+
+  .post-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .post-filter {
+    color: #374151;
+    padding: 0.5rem 1.5rem;
+    background: #f3f4f6;
+    border-radius: 9999px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 1.125rem;
+    line-height: 1.25rem;
+  }
+
+  .post-filter:hover {
+    background: #e5e7eb;
+  }
+
+  .post-filter.active {
+    background: #2563eb;
+    color: white;
+  }
+
+  .featured-post-container {
+    margin-bottom: 4rem;
+  }
+
+  .featured-post {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: #f9fafb;
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
+
+  .featured-post-image-container {
+    position: relative;
+    height: auto;
+  }
+
+  .featured-post-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .featured-post-label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .featured-post-label-text {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: white;
+    background: #2563eb;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-weight: 500;
+  }
+
+  .featured-post-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .featured-post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #4b5563;
+  }
+
+  .featured-post-meta-category {
+    color: #2563eb;
+    background: #dbeafe;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .featured-post-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    margin-bottom: 1rem;
+    color: #111827;
+    font-weight: 700;
+  }
+
+  .featured-post-title-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .featured-post-title-link:hover {
+    color: #2563eb;
+  }
+
+  .featured-post-excerpt {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .featured-post-author-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .featured-post-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .featured-post-author-image {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .featured-post-author-image i {
+    color: #2563eb;
+  }
+
+  .featured-post-author-name {
+    color: #374151;
+  }
+
+  .featured-post-author-link {
+    background: #2563eb;
+    text-decoration: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  .blog-post {
+    background: white;
+    border-color: #e5e7eb;
+    border-width: 1px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .blog-post:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog-post-image-container {
+    position: relative;
+  }
+
+  .blog-post-image {
+    width: 100%;
+    height: 12rem;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .blog-post-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .blog-post-category-text {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: white;
+    background: #2563eb;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-weight: 500;
+  }
+
+  .blog-post-meta {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .blog-post-meta-details {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #4b5563;
+  }
+
+  .blog-post-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: #111827;
+    font-weight: 700;
+  }
+
+  .blog-post-title-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-post-title-link:hover {
+    color: #2563eb;
+  }
+
+  .blog-post-excerpt {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .blog-post-author-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .blog-post-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .blog-post-author-image {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    background: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-post-author-image i {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: #2563eb;
+  }
+
+  .blog-post-author-name {
+    color: #374151;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    opacity: 0.8;
+  }
+
+  .blog-post-author-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-posts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .featured-post {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-posts {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .featured-post {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+</style>
