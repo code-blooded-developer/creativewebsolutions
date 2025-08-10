@@ -1,46 +1,55 @@
-# Astro Starter Kit: Basics
+# Creative Web Solutions
 
-```sh
-npm create astro@latest -- --template basics
+Creative Web Solutions is a modern web design and development agency website built with [Astro](https://astro.build/). It features a clean, responsive design, modular components, and pages for services, blog, contact, and more.
+
+## Features
+
+- **Astro Framework**: Fast, modern static site generator.
+- **Modular Components**: Reusable UI components for rapid development.
+- **Responsive Design**: Mobile-friendly layouts and images.
+- **Blog**: Markdown-powered blog posts with custom layout.
+- **Contact Form**: Easy-to-customize contact form.
+- **Team & Testimonials**: Showcase your team and client feedback.
+- **SEO Optimized**: Best practices for search engines.
+- **Global Styles**: Centralized CSS for consistent look and feel.
+
+## Project Structure
+
+```
+astro.config.mjs
+package.json
+tsconfig.json
+public/           # Static assets
+src/
+  assets/         # Images for pages and blog
+  components/     # UI components (Button, Card, etc.)
+  layouts/        # Page layouts
+  pages/          # Site pages (index, about, blog, contact, etc.)
+  styles/         # Global CSS
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Getting Started
 
-## 🚀 Project Structure
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
+4. **Preview production build**:
+   ```bash
+   npm run preview
+   ```
 
-Inside of your Astro project, you'll see the following folders and files:
+## Customization
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Update images in `src/assets/`.
+- Edit content in `src/pages/` and blog posts in Markdown files.
+- Modify components in `src/components/` for custom UI.
+- Adjust styles in `src/styles/global.css`.
