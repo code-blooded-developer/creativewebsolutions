@@ -1,6 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const { pageTitle } = Astro.props;
 ---
 
 <!doctype html>
@@ -8,9 +10,9 @@ import Footer from "../components/Footer.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>Creative Web Solutions | {pageTitle}</title>
     <!-- Remix Icons CDN -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"
