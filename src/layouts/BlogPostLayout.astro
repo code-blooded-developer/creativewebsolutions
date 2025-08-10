@@ -1,0 +1,289 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+
+const { frontmatter } = Astro.props;
+
+import "../styles/global.css";
+
+const { title, date, timeToRead, author, authorRole, cover } = frontmatter;
+
+let coverImg;
+if (frontmatter.cover) {
+  coverImg = await import(frontmatter.cover);
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Creative Web Solutions | {title}</title>
+    <!-- Remix Icons CDN -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.5.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header />
+    <article>
+      <div class="post-header-container">
+        <a href="/blog" class="back-to-blog-link">← Back to Blog</a>
+        <header class="post-header">
+          <div class="post-meta">
+            <span class="post-category">Web Design</span>
+            <span class="post-date">{date}</span>
+            <span class="post-separator">•</span>
+            <span class="post-read-time">{timeToRead}</span>
+          </div>
+          <h1 class="post-title">{title}</h1>
+          <div class="post-author">
+            <div class="post-author-avatar">
+              <i class="ri-user-line"></i>
+            </div>
+            <div>
+              <div class="post-author-name">{author}</div>
+              <div class="post-author-role">{authorRole}</div>
+            </div>
+          </div>
+        </header>
+        <div class="post-image-container">
+          {
+            coverImg && (
+              <Image class="post-image" src={coverImg.default} alt={title} />
+            )
+          }
+        </div>
+      </div>
+      <div class="post-content-container">
+        <div class="post-content">
+          <slot />
+        </div>
+        <div class="post-share">
+          <div class="post-share-content">
+            <p class="post-share-title">Share this article</p>
+            <div class="post-share-icons">
+              <div class="post-share-icon facebook">
+                <i class="ri-facebook-fill"></i>
+              </div>
+              <div class="post-share-icon twitter">
+                <i class="ri-twitter-fill"></i>
+              </div>
+              <div class="post-share-icon linkedin">
+                <i class="ri-linkedin-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .post-header-container {
+    padding: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 56rem;
+  }
+
+  .back-to-blog-link {
+    color: #2563eb;
+    display: inline-block;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    opacity: 0.8;
+  }
+
+  .back-to-blog-link:hover {
+    color: #1d4ed8;
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .post-category {
+    color: white;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    background: #2563eb;
+    border-radius: 9999px;
+    margin-right: 1rem;
+  }
+
+  .post-date {
+    color: #4b5563;
+  }
+
+  .post-separator {
+    color: #9ca3af;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .post-read-time {
+    color: #4b5563;
+  }
+
+  .post-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #111827;
+  }
+
+  .post-author {
+    display: flex;
+    align-items: center;
+  }
+
+  .post-author-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: #dbeafe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+  }
+
+  .post-author-avatar i {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    color: #2563eb;
+  }
+
+  .post-author-name {
+    font-weight: 500;
+    color: #111827;
+    opacity: 0.8;
+  }
+
+  .post-author-role {
+    color: #4b5563;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    opacity: 0.8;
+  }
+
+  .post-image-container {
+    margin-bottom: 3rem;
+  }
+
+  .post-image {
+    width: 100%;
+    height: 24rem;
+    object-position: top;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-content-container {
+    padding: 2rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .post-content {
+    line-height: 1.7;
+    color: #374151;
+    max-width: none;
+    margin-bottom: 3rem;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #111827;
+    opacity: 0.8;
+  }
+
+  .post-content p {
+    color: #374151;
+    opacity: 0.8;
+  }
+
+  .post-share {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-color: #e5e7eb;
+    border-top-width: 1px;
+  }
+
+  .post-share-content {
+    text-align: center;
+  }
+
+  .post-share-title {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .post-share-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .post-share-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2563eb;
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+
+  .post-share-icon i {
+    color: white;
+  }
+
+  .post-share-icon:hover {
+    background: #1d4ed8;
+  }
+
+  .post-share-icon.twitter {
+    background: #60a5fa;
+  }
+
+  .post-share-icon.linkedin {
+    background: #1d4ed8;
+  }
+
+  .post-share-icon.twitter:hover {
+    background: #3b82f6;
+  }
+
+  .post-share-icon.linkedin:hover {
+    background: #1e40af;
+  }
+</style>
